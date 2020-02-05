@@ -1,0 +1,50 @@
+{% extends "users/base.html" %}
+{% block head_block %}
+ <style>
+     #banner{
+        background-color: #212529;
+     }
+    
+     #g1{
+         font-size: 30px;
+         font-weight: bold;
+         text-align: center;
+     }
+     #ed{
+         margin: auto;
+         padding: 50px;
+         text-align: center;
+     }
+     #error{
+         background-color: rgb(255, 80, 80);
+         width: fit-content;
+         padding: 10px;
+         border-radius: 10px;
+         margin: auto;
+     }
+ </style>
+{% endblock %}
+{% block body_block %}
+<section id="edit">
+    <div class="container">
+        <div id="ed">
+            {% if error %}
+             <div id="error">
+                 * {{error}}
+             </div>
+             {% endif %}
+            <form method="POST" action="{% url 'users:edit_pic' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="profile_pic" class="l1" id="g1">Update your profile photo</label><br><br>
+                    {{ form.profile_pic }}
+                    
+                  </div><br>
+                  <button type="submit" class="btn btn-success btn2" >Save Changes</button>
+                  <a class="btn btn-primary" href="{% url 'users:profile' %}" role="button">Go Back</a>
+             </form>
+             
+    </div>
+    </section>
+
+{% endblock %}

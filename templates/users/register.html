@@ -34,10 +34,17 @@
       
  </div>
     <div class="signup-form">
-    <form class="login-form animate" method="POST" action="{% url 'users:register' %}">
+    <form class="login-form animate" method="POST" action="{% url 'users:register' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {% if error_message %}
-        <p style="color: red;">*  {{ error_message }}</p>
+        <div style="background-color: rgb(255, 80, 80);
+        width: 80%;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 15px;
+        border-radius: 10px;">
+          * {{error_message}}
+         </div><br>
          {% endif %}
         <div class="form-group">
           <label for="{{ form.first_name.id_for_label }}" class="l1">First Name</label><br>
@@ -75,25 +82,21 @@
         </div>
         <div class="form-group">
           <label for="{{ form.contact.id_for_label }}" class="l1">Mobile No.</label><br>
-          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
           {{ form.contact }}
           
         </div>
         <div class="form-group">
           <label for="{{ form.fav_song.id_for_label }}" class="l1">Favourite Song</label><br>
-          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
           {{ form.fav_song }}
           
         </div>
         <div class="form-group">
           <label for="{{ form.fav_artist.id_for_label }}" class="l1">Favourite Singer</label><br>
-          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
           {{ form.fav_artist }}
           
         </div>
         <div class="form-group">
           <label for="profile_pic" class="l1">Profile Photo</label><br>
-          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
           {{ form.profile_pic }}
           
         </div>

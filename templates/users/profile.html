@@ -1,0 +1,105 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block head_block %}
+ <style>
+     #banner{
+        background-color: #212529;
+     }
+     #pic{
+	border: 2px solid black;
+    }
+    #main, #info{
+        width: fit-content;
+        padding: 20px 0 0 0;
+    }
+    .detail>h4, .detail>p{
+        display: inline;
+    }
+    #un{
+        padding: 10px;
+        text-align: center;
+        color: rgb(255, 0, 0);
+        text-transform: none;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+    }
+    .val{
+        font-size: 18px;
+        /* background-color: yellow; */
+        padding: 5px;
+        /* border: 1px solid black; */
+        color: blueviolet;
+        font-weight: 500;
+    }
+    .cat{
+        font-size: 20px;
+        padding: 5px;
+        font-weight: 700;
+        
+        
+    }
+    #btn3{
+        position: absolute;
+        left: 50px
+    }
+    #edit{
+        position: absolute;
+        right: 0;
+    }
+    #b1{
+        padding: 10px 0;
+    }
+ </style>
+{% endblock %}
+{% block body_block %}
+
+<section id="profile">
+    <div class="container">
+        <div id="b1">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{% url 'users:dashboard' %}">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                </ol>
+            </nav>
+       </div>
+       <div class="row">
+        <div class="col">
+            <div id="main">
+                {% if user.userprofile.profile_pic %}
+                <img src="{{user.userprofile.profile_pic.url}}" height="200px" id="pic">
+                {% else %}
+                <img src="{% static 'img/hi.png' %}" height="200px" id="pic">
+                {% endif %}
+                <br><br>
+                <a class="btn btn-success" href="{% url 'users:edit_pic' %}" role="button"><i class="fa fa-upload"></i> Update Profile Photo</a>
+                <h3 id="un">{{user.username}}</h3>
+           </div>
+        </div>
+        <div class="col-lg-9 col-md-7 col-sm-4">
+            <div id="info">
+                <div class="detail">
+                    <h4 class="cat">Name : </h4><p class="val">{{user.first_name}} {{ user.last_name}}</p>
+                </div><br>
+                <div class="detail">
+                    <h4 class="cat">Email Address : </h4><p class="val">{{user.email}}</p>
+                </div><br>
+                <div class="detail">
+                    <h4 class="cat">Phone Number : </h4><p class="val">{{user.userprofile.contact}}</p>
+                </div><br>
+                <div class="detail">
+                    <h4 class="cat">Favourite Song : </h4><p class="val">{{user.userprofile.fav_song}}</p>
+                </div><br>
+                <div class="detail">
+                    <h4 class="cat">Favourite Artist : </h4><p class="val">{{user.userprofile.fav_artist}}</p>
+                </div>
+            </div>
+            <div id="edit">
+                <a class="btn btn-success" href="{% url 'users:edit_profile' %}" role="button"><i class="fa fa-edit"></i>Edit Profile</a>
+            </div>    
+        </div>
+        
+       </div>
+    </section>
+
+{% endblock %}

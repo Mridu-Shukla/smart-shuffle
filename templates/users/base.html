@@ -14,10 +14,11 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="{% static 'js/main.js' %}"></script>
         <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
         {% block head_block %}
         {% endblock %}
-        <script src="{% static 'js/main.js' %}"></script>
+        
     </head>
     <body>
         <div id="home" class="head">
@@ -47,14 +48,19 @@
               </li> 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user-circle fa-lg"></i>
+                  <!-- <i class="fa fa-user-circle fa-lg"></i> -->
+                  {% if user.userprofile.profile_pic %}
+                <img src="{{user.userprofile.profile_pic.url}}" height="40px" style="border-radius: 50%;border: 2px solid #fed136;;" id="pic">
+                {% else %}
+                <img src="{% static 'img/hi.png' %}" height="40px" style="border-radius: 80%;"id="pic">
+                {% endif %}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                  <a class="dropdown-item" href="{% url 'users:dashboard' %}">Dashboard</a>
-                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="{% url 'users:dashboard' %}"><i class="fa fa-user-circle-o"></i>&nbsp;Dashboard</a>
+                  <a class="dropdown-item" href="{% url 'users:profile' %}"><i class="fa fa-user"></i>&nbsp;Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-power-off"></i>&nbsp;Logout</a>
                 </div>
 
               </li>
@@ -138,7 +144,6 @@
         center:true,
         loop:true,
 				items:2,
-				nav:false
 			},
 			1000:{
         center:true,
