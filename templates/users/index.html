@@ -1,0 +1,66 @@
+{% extends "users/base.html" %}
+{% load static %}
+<!-- {% block head_block %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}"> 
+{% endblock %} -->
+{% block body_block %}
+<div class="banner">
+    <div class="container">
+    <div class="banner-text">
+    <div class="banner-heading">
+   Smart Shuffle
+    </div>
+    <div class="banner-sub-heading">
+    Play with your songs list
+    </div>
+    {% if not user.is_authenticated %}
+    <a class="btn btn-warning text-dark btn-banner" href="{% url 'users:register' %}">SIGN UP NOW</a>
+    {% endif %}
+    </div>
+    </div>
+</div>
+<section id="about">
+<div class="container">
+    <div class="text-intro">
+    <h2 id="s1">About</h2><br>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+    </div>
+</div>
+</section>
+<section id="how">
+    <div class="container">
+        <div class="proc">
+        <h2 id="s1">How to use ?</h2><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+    </div>
+    </section>
+    
+
+    <section id="collection">
+        <div class="container">
+            <div class="coll">
+            <h2 id="s1">Our Collections</h2><br>
+
+            <div class="owl-carousel owl-theme">
+                {% for i in '12345'|make_list %}
+                <div class="item">
+                    
+                    <div class="single_box">
+                        <div class="top_box">
+                            <img src="{% static 'img/coming.jpg' %}">
+                        </div>
+                        <div class="bottom_box">
+                            <p>hhf</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+              </div>
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p> -->
+            </div>
+        </div>
+        </section>
+
+{% endblock %}

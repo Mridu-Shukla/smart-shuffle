@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            SS Music
+        </title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gothic+A1|Kaushan+Script|Libre+Baskerville|Lobster|Sigmar+One|Righteous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'js/owlcarousel/assets/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'js/owlcarousel/assets/owl.carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'js/owlcarousel/assets/owl.theme.default.min.css' %}">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+        {% block head_block %}
+        {% endblock %}
+        <script src="{% static 'js/main.js' %}"></script>
+    </head>
+    <body>
+        <div id="home" class="head">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="banner">
+            <div class="container">
+         
+          <a class="navbar-brand" href="{% url 'home' %}"><span>SS</span> Music</a>
+        
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Songs</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Playlist</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Favourites</a>
+              </li> 
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-user-circle fa-lg"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                  <a class="dropdown-item" href="{% url 'users:dashboard' %}">Dashboard</a>
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+
+              </li>
+            <!-- <li class="nav-item ">
+              <a class="nav-link" href="{% url 'users:dashboard' %}">{{ user.username }}</a>
+              <i class="fa fa-user-circle"></i>
+          </li> -->
+            {% else %}
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#"></a>
+            </li> --> 
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+          </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'users:user_login' %}">Login</a>
+          </li>
+          {% endif %}
+            </ul>
+          </div>
+            </div>
+        </nav>
+        </div>
+        {% block body_block %}
+        {% endblock %} 
+
+        <footer class="footer-area section-gap">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-5  col-md-6 col-sm-6">
+                      <div class="single-footer-widget">
+                          <h6></h6>
+                                                  
+                          <p class="footer-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> SS Music. All rights reserved.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-5  col-md-6 col-sm-6">
+                      <div class="single-footer-widget">
+                          <h6></h6>
+                          <p></p>
+                          <div class="" id="mc_embed_signup">      
+                          </div>
+                          </div>
+                  </div>							
+                  <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                      <div class="single-footer-widget">
+                          <h5>Follow On</h5>
+                          <div class="footer-social d-flex align-items-center"> 
+                            <a href="#"><i class="fa fa-snapchat fa-x"></i></a>
+                            <a href="#"><i class="fa fa-youtube fa-x"></i></a>
+                            <a href="#"><i class="fa fa-twitter fa-x"></i></a>
+                              <a href="#"><i class="fa fa-instagram fa-x"></i></a>
+                              <a href="#"><i class="fa fa-facebook fa-x"></i></a>
+                          </div>
+                      </div>
+                  </div>							
+              </div>
+          </div>
+      </footer>
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/owlcarousel/owl.carousel.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.js' %}"></script>
+
+        <script type="text/javascript">
+          $('.owl-carousel').owlCarousel({
+            
+    margin:10,
+    nav: true,
+    navText:["<div class='nav-btn prev-slide'><i class='fa fa-chevron-left fa-3x'></i></div>","<div class='nav-btn next-slide'><i class='fa fa-chevron-right fa-3x'></i></div>"],
+    responsiveClass:true,
+		responsive:{
+			0:{
+        center:true,
+        loop:true,
+        items:1,
+        
+				// nav:true
+			},
+			600:{
+        center:true,
+        loop:true,
+				items:2,
+				nav:false
+			},
+			1000:{
+        center:true,
+        items:3,
+				// nav:true,
+				loop:true
+			}
+		}
+	})
+        </script>
+      </body>
+</html>

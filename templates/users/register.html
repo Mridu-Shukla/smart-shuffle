@@ -1,0 +1,115 @@
+{% load static %}
+ <!DOCTYPE html>
+ <html>
+  <head>
+    <title>
+        SS Music
+    </title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gothic+A1|Kaushan+Script|Libre+Baskerville|Lobster">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"> 
+    <script src="{% static 'js/register.js' %}"></script>
+</head>
+<body onload="toggle()">
+     <div class="back" id="b1">
+       
+    </div>
+    <div id="log" class="login">
+    <a href="{% url 'home' %}"><span  class="close" title="Close">&times;</span></a>
+    {% if registered %}
+    <h4>Thank you for registering...</h4><br>
+    <a class="btn btn-primary" href="{% url 'home' %}" role="button">Go Back Home</a>
+    <a class="btn btn-success" href="{% url 'users:user_login' %}" role="button">Login Now</a>
+    {% else %}
+    <div class="signup">
+      <div id="h1">
+        <h3 >REGISTER NOW!!!</h3>
+        <p>Fill the details to enjoy the benefits!!!!</p>
+      </div>
+      
+ </div>
+    <div class="signup-form">
+    <form class="login-form animate" method="POST" action="{% url 'users:register' %}">
+        {% csrf_token %}
+        {% if error_message %}
+        <p style="color: red;">*  {{ error_message }}</p>
+         {% endif %}
+        <div class="form-group">
+          <label for="{{ form.first_name.id_for_label }}" class="l1">First Name</label><br>
+          {{ form.first_name }}
+          <!-- <input type="text" class="form-control" id="username" placeholder="Type your username" required> -->
+        </div>
+        <div class="form-group">
+          <label for="{{ form.last_name.id_for_label }}" class="l1">Last Name</label><br>
+          {{ form.last_name }}
+          <!-- <input type="text" class="form-control" id="username" placeholder="Type your username" required> -->
+          
+        </div>
+        <div class="form-group">
+          <label for="{{ form.email.id_for_label }}" class="l1">Email</label><br>
+          {{ form.email }}
+          <!-- <input type="text" class="form-control" id="username" placeholder="Type your username" required> -->
+          
+        </div>
+        <div class="form-group">
+          <label for="{{ form.username.id_for_label }}" class="l1">Username</label><br>
+          {{ form.username }}
+          <!-- <input type="text" class="form-control" id="username" placeholder="Type your username" required> -->
+        </div>
+        <div class="form-group">
+          <label for="{{ form.password.id_for_label }}" class="l1">Password</label><br>
+          {{ form.password }}
+          <!-- <input type="text" class="form-control" id="username" placeholder="Type your username" required> -->
+          
+        </div>
+        <div class="form-group">
+          <label for="{{ form.pass_confirm.id_for_label }}" class="l1">Confirm Password</label><br>
+          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
+          {{ form.pass_confirm }}
+          
+        </div>
+        <div class="form-group">
+          <label for="{{ form.contact.id_for_label }}" class="l1">Mobile No.</label><br>
+          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
+          {{ form.contact }}
+          
+        </div>
+        <div class="form-group">
+          <label for="{{ form.fav_song.id_for_label }}" class="l1">Favourite Song</label><br>
+          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
+          {{ form.fav_song }}
+          
+        </div>
+        <div class="form-group">
+          <label for="{{ form.fav_artist.id_for_label }}" class="l1">Favourite Singer</label><br>
+          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
+          {{ form.fav_artist }}
+          
+        </div>
+        <div class="form-group">
+          <label for="profile_pic" class="l1">Profile Photo</label><br>
+          <!-- <input type="password" class="form-control" id="pass" placeholder="Type your password" required> -->
+          {{ form.profile_pic }}
+          
+        </div>
+        <div class="form-group">
+          <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="g-recaptcha" data-sitekey="6LdgRdUUAAAAAJsKhD7tbziOiZfeTDEkNraEYcOt" ></div>
+        </div>
+        <button type="submit" class="btn btn-primary btn2" >Submit</button>
+      </form>
+      <br>
+      <div class="signin-opt">
+          <p>Already have an account! <span><a href="{% url 'users:user_login' %}"> Sign-in Now</a></span></p>
+      </div>
+    </div>
+      {% endif %}
+    </div>
+  
+</body>
+ </html>

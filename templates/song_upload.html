@@ -1,0 +1,16 @@
+{% if error %}
+    <div>
+        <p>* {{error}}</p>
+    </div>
+{% elif message %}
+<div>
+    <p>{{message}}</p>
+</div>
+{% else %}
+ <form method="POST" enctype="multipart/form-data">
+ {% csrf_token %}
+ <label> Upload the Data File</label><br><br>
+ <input type="file" name="file"><br><br>
+ <button type="submit">Upload</button>
+</form>
+{% endif %}

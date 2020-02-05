@@ -1,0 +1,29 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block head_block %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+{% endblock %}
+{% block body_block %}
+<div class="banner" style="background-image: url('/static/img/d3.jpg');">
+    <div class="container">
+    <div class="banner-text" style="padding: 270px 0 0 50px">
+    <div class="banner-heading">
+     Welcome {{ user.username }}
+      </div>
+    <div class="banner-sub-heading">
+    Enjoy Your Day Ahead....
+    </div>
+</div>
+    </div>
+</div>
+<section id="about">
+<div class="container">
+    <div class="text-intro">
+    <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+    </div>
+</div>
+</section>
+</div>
+
+{% endblock %}
