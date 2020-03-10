@@ -1,0 +1,130 @@
+{% extends "users/base.html" %}
+{% block head_block %}
+ <style>
+     #banner{
+        background-color: #212529;
+     }
+     .val{
+         text-transform: none;
+         color: brown;
+         
+     }
+     .track{
+         background-color: #f7f7f7;
+         height: 100%;
+         padding: 10px 20px 10px 50px;
+     }
+     #s1{
+         text-align: center;
+     }
+     .song{
+         padding: 30px 20px;
+     }
+     .fav{
+         float: right;
+         font-size: large;
+         cursor: pointer;
+         color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+         
+     }
+     .fa:hover{
+         color: red ;
+         -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: transparent;
+     }
+     .name{
+        display: inline-block;
+     }
+     #artist{
+         color: green;
+         font-weight: 600;
+     }
+</style>
+{% endblock %}
+{% block body_block %}
+<section id="song">
+  
+    <div class="container">
+     
+        <div class="song">
+          {% if messages %}
+          <div class="alert alert-success" style="width:50%" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+          </div>          
+          {% endif %}
+        <h2 id="s1">Our Collections!!</h2><br>
+        {% for song in page_obj %}
+    <!-- {# Each "contact" is a Contact model object. #} -->
+    <div class="track">
+        <div class="name">
+            <h5 class="val">
+            {{ song }}  - <span id="artist">{{song.artist}}</span> 
+            </h5>
+        </div>
+        <div class="fav">
+          <!-- <form method="POST" action="{% url 'songs' %}"> -->
+            <!-- {% csrf_token %} -->
+            <a href="{% url 'users:fav_song' id=song.id %}"><i class="fa fa-heart"></i></a>
+            <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-heart"></i>Add to Faourites</button> -->
+          <!-- </form> -->
+            
+        </div>
+    </div>
+    <br>
+{% endfor %}
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-end">
+      
+    {% if page_obj.has_previous %}
+    <li class="page-item ">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">{{page_obj.num_pages}}Previous</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled ">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+    {% endif %}
+    {% if page_obj.number == 1 %}
+    <li class="page-item active" aria-current="page"><a class="page-link" href="?page=1">1</a></li>
+    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+    <a class="page-link" href="?page={{ page_obj.next_page_number }}">...</a>
+    <li class="page-item"><a class="page-link" href="?page=22">22</a></li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+ 
+    {% elif page_obj.has_next %}
+    <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+    {% if not page_obj.number == 2 %}
+    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+    {% endif %}
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="#">{{ page_obj.number }} <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">...</a>
+      </li>
+    <li class="page-item"><a class="page-link" href="?page=22">22</a></li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    </li>
+    {% else %}
+    <li class="page-item " aria-current="page"><a class="page-link" href="?page=1">1</a></li>
+    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">...</a>
+    <li class="page-item active"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+    <li class="page-item disabled">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+        </div>
+    </div>
+    </section>
+{% endblock %}

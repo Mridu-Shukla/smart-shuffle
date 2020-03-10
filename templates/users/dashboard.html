@@ -1,5 +1,15 @@
 {% extends "users/base.html" %}
 {% load static %}
+{% block head_block %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<!-- <script>
+    $(document).ready(function(){
+        $(".hamburger").click(function(){
+          $(".wrapper").toggleClass("active")
+        })
+    });
+</script>  -->
+{% endblock %}
 {% block body_block %}
 <div class="banner" style="background-image: url('/static/img/d3.jpg');">
     <div class="container">
@@ -13,14 +23,337 @@
 </div>
     </div>
 </div>
-<section id="about">
+<section id="fav">
 <div class="container">
-    <div class="text-intro">
-    <h2>About Us</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+    <div class="favv">
+        <h2 id="s1">Favourites</h2><br>
+        <!-- <div class="owl-carousel owl-theme owl-loaded">
+            <div class="owl-stage-outer">
+                <div class="owl-stage">
+                    <div class="owl-item">hello</div>
+                    <div class="owl-item">world</div>
+                    <div class="owl-item">1223</div>
+                    <div class="owl-item">1223</div>
+                    <div class="owl-item">1223</div>
+                </div>
+            </div>
+            <div class="owl-nav">
+                <div class="owl-prev">prev</div>
+                <div class="owl-next">next</div>
+            </div>
+            <div class="owl-dots">
+                <div class="owl-dot active"><span></span></div>
+                <div class="owl-dot"><span></span></div>
+                <div class="owl-dot"><span></span></div>
+            </div>
+        </div> -->
+        <!-- Grid row -->
+<div class="row">
+
+     {% for fs in fav_songs %}
+    <div class="col-lg-4 col-md-12 mb-4">
+  
+      <!--Modal: Name-->
+      <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+  
+          <!--Content-->
+          <div class="modal-content">
+  
+            <!--Body-->
+            <div class="modal-body mb-0 p-0">
+  
+              <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/A3PDXmYoF5U"
+                  allowfullscreen></iframe>
+              </div>
+  
+            </div>
+  
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <span class="mr-4">Spread the word!</span>
+              <a type="button" class="btn-floating btn-sm btn-fb"><i class="fab fa-facebook-f"></i></a>
+              <!--Twitter-->
+              <a type="button" class="btn-floating btn-sm btn-tw"><i class="fab fa-twitter"></i></a>
+              <!--Google +-->
+              <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fab fa-google-plus-g"></i></a>
+              <!--Linkedin-->
+              <a type="button" class="btn-floating btn-sm btn-ins"><i class="fab fa-linkedin-in"></i></a>
+  
+              <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+  
+            </div>
+  
+          </div>
+          <!--/.Content-->
+  
+        </div>
+      </div>
+      <!--Modal: Name-->
+      <!-- {{fs}} -->
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{fs.title}}</h5>
+          <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+          <p class="card-text">{{fs.artist}}</p>
+          <a href="#" class="card-link" data-toggle="modal" data-target="#modal1">Play Now</a>
+        </div>
+      </div>
+
+  
     </div>
+    <!-- Grid column -->
+  {% endfor %}
+  
+  </div>
+  <!-- Grid row -->
+    </div>    
 </div>
 </section>
+<section id="fav">
+    <div class="container">
+        <div class="play">
+            <h2 id="s1">Playlist</h2><br>
+            <!--Carousel Wrapper-->
+<div id="multi-item-example" class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
+
+    <!--Controls-->
+    <div class="controls-top" style="text-align: center;">
+      <a class="black-text" href="#multi-item-example" data-slide="prev"><i class="fa fa-angle-left fa-3x pr-3"></i></a>
+      <a class="black-text" href="#multi-item-example" data-slide="next"><i class="fa fa-angle-right fa-3x pl-3"></i></a>
+    </div>
+    <!--/.Controls-->
+  
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+  
+      <!--First slide-->
+      <div class="carousel-item active">
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(38).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(19).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(42).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(8).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+      </div>
+      <!--/.First slide-->
+  
+      <!--Second slide-->
+      <div class="carousel-item">
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(53).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(25).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(47).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(26).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+      </div>
+      <!--/.Second slide-->
+  
+      <!--Third slide-->
+      <div class="carousel-item">
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(64).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(51).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(59).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+        <div class="col-md-3 mb-3">
+          <div class="card">
+            <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(63).jpg"
+              alt="Card image cap">
+          </div>
+        </div>
+  
+      </div>
+      <!--/.Third slide-->
+  
+    </div>
+    <!--/.Slides-->
+  
+  </div>
+  <!--/.Carousel Wrapper-->
+        </div>
+    </div>
+</section>
 </div>
+
+<script>
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:false
+        }
+    }
+})
+</script>
+<!-- <div class="wrapper">
+
+	<div class="top_navbar">
+		<div class="logo">
+			<a href="#">Coding Market</a>
+		</div>
+		<div class="top_menu">
+			<div class="home_link">
+				<a href="#">
+					<span class="icon"><i class="fas fa-home"></i></span>
+					<span>Home</span>
+				</a>
+			</div>
+			<div class="right_info">
+				<div class="icon_wrap">
+					<div class="icon">
+						<i class="fas fa-bell"></i>
+					</div>
+				</div>
+				<div class="icon_wrap">
+					<div class="icon">
+						<i class="fas fa-cog"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="main_body">
+		
+		<div class="sidebar_menu">
+	        <div class="inner__sidebar_menu">
+	        	
+	        	<ul>
+		          <li>
+		            <a href="#">
+		              <span class="icon">
+		              	<i class="fas fa-border-all"></i></span>
+		              <span class="list">Dashboard</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href="#" class="active">
+		              <span class="icon"><i class="fas fa-chart-pie"></i></span>
+		              <span class="list">Charts</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href="#">
+		              <span class="icon"><i class="fas fa-address-book"></i></span>
+		              <span class="list">Contact</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href="#">
+		              <span class="icon"><i class="fas fa-address-card"></i></span>
+		              <span class="list">About</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href="#">
+		              <span class="icon"><i class="fab fa-blogger"></i></span>
+		              <span class="list">Blogs</span>
+		            </a>
+		          </li>
+		          <li>
+		            <a href="#">
+		              <span class="icon"><i class="fas fa-map-marked-alt"></i></span>
+		              <span class="list">Maps</span>
+		            </a>
+		          </li>
+		        </ul>
+
+		        <div class="hamburger">
+			        <div class="inner_hamburger">
+			            <span class="arrow">
+			                <i class="fas fa-long-arrow-alt-left"></i>
+			                <i class="fas fa-long-arrow-alt-right"></i>
+			            </span>
+			        </div>
+			    </div>
+
+	        </div>
+	    </div>
+
+	    <div class="container">
+	    	<div class="item_wrap">
+	    		<div class="item">Welcome {{ user.username }}</div>
+            </div>
+	    </div>
+	</div>
+</div> -->
+
 
 {% endblock %}

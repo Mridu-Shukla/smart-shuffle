@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -6,9 +6,13 @@ from .models import UserProfile, Songs
 from django.conf import settings
 from django.contrib.auth.decorators import login_required,permission_required
 from .forms import RegisterForm, LoginForm,EditForm
+from django.core.paginator import Paginator
 import json
 import urllib
 import csv,io
+import random
+from django.contrib import messages
+from mlcode.knn_song import print_similar_songs
 
 # Create your views here.
 def index(request):
@@ -16,7 +20,9 @@ def index(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'users/dashboard.html')
+    songs=getFav(request.user.username)
+    suggest = getPlalist(request.user.username)
+    return render(request, 'users/dashboard.html',{'fav_songs':songs[1:7], 'suggested_songs': suggest})
 
 @login_required
 def user_logout(request):
@@ -130,8 +136,8 @@ def edit_pic(request):
     if request.method == 'POST':
         form = EditForm(request.POST, request.FILES)
         if form.is_valid():
-            if not form.cleaned_data['profile_pic']:
-               return render(request, 'users/edit_pic.html',{'form':form, 'error':'Something went wrong!! Please select your image.'})
+            # if not form.cleaned_data['profile_pic']:
+            #    return render(request, 'users/edit_pic.html',{'form':form, 'error':'Something went wrong!! Please select your image.'})
             profile_pic = request.FILES.get('profile_pic') 
             user_profile = UserProfile.objects.get(user=request.user)
             user_profile.profile_pic = profile_pic
@@ -139,6 +145,7 @@ def edit_pic(request):
             return HttpResponseRedirect(reverse('users:profile'))
         else:
             print(form.errors)
+            return render(request, 'users/edit_pic.html',{'form':form, 'error':'Something went wrong!! Please select your image.'})
     else:
         form = EditForm()
         return render(request, 'users/edit_pic.html',{'form':form})
@@ -189,3 +196,51 @@ def song_upload(request):
         )
 
     return render(request, 'song_upload.html', {'message':'File uploaded successfully'})
+
+
+def songs(request):
+    message=""
+    songs = Songs.objects.all()
+    paginator = Paginator(songs, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'users/songs.html',{'page_obj': page_obj, 'message':message})
+
+@login_required
+def addFav(request, id):
+    song = get_object_or_404(Songs,id=id)
+    user = User.objects.get(username=request.user.username)
+    user_profile = UserProfile.objects.get(user=user)
+    user_profile.fav_songs.add(song)
+    user_profile.save()
+    messages.success(request, "Added to favourites")
+    return HttpResponseRedirect(reverse('songs'))
+
+def getFav(username):
+    user = User.objects.get(username=username)
+    user_profile = UserProfile.objects.get(user=user)
+    fav = user_profile.fav_songs.all()
+    songs = []
+    for f in fav:
+        songs.append(Songs.objects.get(title=f))
+    return songs
+
+
+def favourite(request):
+    songs=getFav(request.user.username)
+    return render(request, 'users/favourites.html',{'fav_songs':songs})
+
+def getPlalist(username):
+    user = User.objects.get(username=username)
+    user_profile = UserProfile.objects.get(user=user)
+    fav = user_profile.fav_songs.all()
+    ss = random.choice(fav)
+    suggest = print_similar_songs(ss.title)
+    return suggest
+
+@login_required
+def playlist(request):
+    suggest = getPlalist(request.user.username)
+    # print(ss.title)
+    return render(request,'users/playlist.html',{'suggested_songs': suggest})
+

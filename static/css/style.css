@@ -218,7 +218,7 @@ section{
 .owl-carousel .owl-prev.disabled,
 .owl-carousel .owl-next.disabled{
   pointer-events: none;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .owl-carousel .prev-slide{
@@ -248,8 +248,11 @@ section{
 
 
 .footer-area {
+	position: fixed;
+	bottom:0px;
+    width: 100%;
 	padding: 100px 0px;
-	background-color: #222222;
+	background-color: #212529;;
   }
   .footer-social a {
 	padding-right: 18px;

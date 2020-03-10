@@ -24,7 +24,8 @@ urlpatterns = [
     path('',views.index, name='home'),
     path('users/', include('users.urls')),
     path('logout/',views.user_logout, name='logout'),
-    path('auth/song-upload/',views.song_upload, name='song-upload')
+    path('auth/song-upload/',views.song_upload, name='song-upload'),
+    path('songs/',views.songs, name='songs'),
 ]
 
 
