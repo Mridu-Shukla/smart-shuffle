@@ -15,25 +15,19 @@ $ cd smart-shuffle
 ```
 
 ### Setup and activate a python virtual environment (perferrably in a folder outside your project)
-```
+```bash
 $ virtualenv -p python3 venv
-```
-```
 $ source venv/bin/activate
 ```
 
 ### Install dependencies
-```
-pip install Django
-```
-```
-pip install pillow
+```bash
+$ pip install Django
+$ pip install pillow
 ```
 ### Make Django aware of models 
-```
+```bash
 $ python manage.py makemigrations
-```
-```
 $ python manage.py migrate
 ```
 ### Run the application
@@ -45,13 +39,6 @@ $ python manage.py runserver
 
 * **Django** - The web framework used
 * **SPOTIFY API** - For getting Dataset
-
-
-## Team
-
-* **Mridu Shukla**
-* **Rahul Bera**
-* **Divyansh Jain**
 
 
 
