@@ -248,12 +248,11 @@ section{
 
 
 .footer-area {
-	position: fixed;
-	bottom:0px;
-    width: 100%;
+	
 	padding: 100px 0px;
 	background-color: #212529;;
   }
+
   .footer-social a {
 	padding-right: 18px;
 	-webkit-transition: all 0.3s ease 0s;

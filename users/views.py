@@ -234,8 +234,11 @@ def getPlalist(username):
     user = User.objects.get(username=username)
     user_profile = UserProfile.objects.get(user=user)
     fav = user_profile.fav_songs.all()
-    ss = random.choice(fav)
-    suggest = print_similar_songs(ss.title)
+    suggest=[]
+    
+    if len(fav) >0:
+        ss = random.choice(fav)    
+        suggest = print_similar_songs(ss.title)
     return suggest
 
 @login_required

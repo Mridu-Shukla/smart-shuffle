@@ -8,11 +8,20 @@
      section{
          padding-top: 150px;
      }
+     .footer-area{
+	bottom:0px;
+    width: 100%;
+     }
 </style>
 {% endblock %}
 {% block body_block %}
 <section id="fav">
 <div class="container">
+  {% if not fav_songs %}
+      <div class="alert alert-info" style="width:100%" role="alert">
+      * No songs in your Favourites!
+      </div>
+      {% else %}
     <h2 id="s1">Favourites</h2><br>
 <div class="row">
 
@@ -75,6 +84,7 @@
    
   <!-- Grid row -->
     </div>    
+    {% endif %}
 </div>
 </section>
 {% endblock %}
