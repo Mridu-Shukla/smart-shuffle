@@ -80,8 +80,6 @@ def register(request):
                     UserProfile.objects.update_or_create(
                     user=user,
                     contact = user_form.cleaned_data['contact'],
-                    fav_song = user_form.cleaned_data['fav_song'],
-                    fav_artist = user_form.cleaned_data['fav_artist'],
                     profile_pic = user_form.cleaned_data['profile_pic'],
                     )
 
@@ -152,10 +150,11 @@ def edit_pic(request):
 
 @login_required
 def edit_profile(request):
+    user = User.objects.get(username=request.user.username)
     if request.method == 'POST':
-        form = EditForm(request.POST)
+        form = EditForm(request.POST, initial={'first_name': user.first_name})
         if form.is_valid():
-            user = User.objects.get(username=request.user.username)
+            
             user.first_name = request.POST.get('first_name')
             user.last_name = request.POST.get('last_name')
             user.email= request.POST.get('email')
@@ -172,7 +171,7 @@ def edit_profile(request):
             return render(request, 'users/edit_profile.html',{'form':form, 'error':'Something went wrong!!'})
     else:
         form = EditForm()
-        return render(request, 'users/edit_profile.html',{'form':form})
+        return render(request, 'users/edit_profile.html',{'form':form, 'user':user})
 
 @permission_required('admin.can_add_log_entry')
 def song_upload(request):
