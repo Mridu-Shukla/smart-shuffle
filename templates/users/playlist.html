@@ -24,17 +24,19 @@
       </div>
       {% else %}
         <h2 id="s1">Playlist</h2><br>
-{% for ss in suggested_songs %}
+        <div class="row">
+        {% for ss in suggested_songs %}
 <!-- {{suggested_songs}} -->
-<div class="media">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">{{ss}}</h5>
-      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-    </div>
-    <!-- <img class="ml-3" src="..." alt="Generic placeholder image"> -->
-  </div>
-  <br>
+
+<div class="col-lg-4 col-md-12 mb-4">
+  
+  <iframe src="https://open.spotify.com/embed/track/{{ss.uri}}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+
+</div>
+
 {% endfor %}
+</div>
 {% endif %}
 </div>
 </section>

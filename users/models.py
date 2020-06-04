@@ -7,6 +7,7 @@ class Songs(models.Model):
     title = models.CharField(max_length=300)
     artist = models.CharField(max_length=200)
     duration = models.IntegerField(editable=False)
+    uri = models.CharField(null=True, max_length=150)
 
     def __str__(self):
         return self.title

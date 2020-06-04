@@ -62,13 +62,15 @@
     <div class="track">
         <div class="name">
             <h5 class="val">
-            {{ song }}  - <span id="artist">{{song.artist}}</span> 
+              <iframe src="https://open.spotify.com/embed/track/{{song.uri}}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <!-- {{ song }}  - <span id="artist">{{song.artist}}</span>  -->
             </h5>
         </div>
         <div class="fav">
           <!-- <form method="POST" action="{% url 'songs' %}"> -->
             <!-- {% csrf_token %} -->
-            <a href="{% url 'users:fav_song' id=song.id %}"><i class="fa fa-heart"></i></a>
+            <a href="{% url 'users:fav_song' id=song.id %}"><i class="fa fa-heart"></i></a> <span>&nbsp; Add to favourites</span>
+            
             <!-- <button type="submit" class="btn btn-primary"><i class="fa fa-heart"></i>Add to Faourites</button> -->
           <!-- </form> -->
             

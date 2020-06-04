@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import re
 import seaborn as sns
 
-songs = pd.read_csv('G:/Projects/smart_shuffle/mlcode/dataset/Songs_dataset.csv')
+songs = pd.read_csv('G:/Projects/smart_shuffle/mlcode/dataset/Songs_data.csv')
 
 song_features = (songs[['danceability','energy','key','loudness','mode','speechiness','acousticness','instrumentalness','liveness','valence','tempo']])
 

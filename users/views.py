@@ -22,7 +22,7 @@ def index(request):
 def dashboard(request):
     songs=getFav(request.user.username)
     suggest = getPlalist(request.user.username)
-    return render(request, 'users/dashboard.html',{'fav_songs':songs[1:7], 'suggested_songs': suggest})
+    return render(request, 'users/dashboard.html',{'fav_songs':songs[:5], 'suggested_songs': suggest})
 
 @login_required
 def user_logout(request):
@@ -192,7 +192,8 @@ def song_upload(request):
         _, created = Songs.objects.update_or_create(
             title = col[1],
             artist = col[0],
-            duration = col[2]
+            duration = col[2],
+            uri = col[3]
         )
 
     return render(request, 'song_upload.html', {'message':'File uploaded successfully'})
@@ -235,11 +236,16 @@ def getPlalist(username):
     user_profile = UserProfile.objects.get(user=user)
     fav = user_profile.fav_songs.all()
     suggest=[]
+    songs = []
     
     if len(fav) >0:
         ss = random.choice(fav)    
         suggest = print_similar_songs(ss.title)
-    return suggest
+    # print(suggest)
+    for st in suggest:
+        print(st)
+        songs.append(Songs.objects.get(title=st))
+    return songs
 
 @login_required
 def playlist(request):
