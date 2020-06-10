@@ -1,44 +1,35 @@
 # Smart-Shuffle Music Portal (SS Music)
 It is a music recommendation system which uses **Collaborative Filtering Recommendation Algorithm** to help the user in creating their playlists based on their favourites.
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Clone it
-```
-$ git clone [git_copy_url]
-```
+### Quick Start Guide
+```bash
+# clone the repository
+$ git clone https://github.com/Mridu-Shukla/smart-shuffle.git
 
-### Change directory
-```
+# Change directory
 $ cd smart-shuffle
-```
 
-### Setup and activate a python virtual environment (perferrably in a folder outside your project)
-```bash
-$ virtualenv -p python3 venv
+# Setup and activate a python virtual environment
+$ virtualenv -p python venv
 $ source venv/bin/activate
-```
 
-### Install dependencies
-```bash
+# Install dependencies
 $ pip install Django
 $ pip install pillow
-```
-### Make Django aware of models 
-```bash
+
+# Make Django db migrations 
 $ python manage.py makemigrations
 $ python manage.py migrate
-```
-### Run the application
-```
+
+# Launch server
 $ python manage.py runserver
 ```
 
-## Built With
+### Built With
 
 * **Django** - The web framework used
-* **SPOTIFY API** - For getting Dataset
+* **SPOTIFY API** - For getting Dataset and playing the track
 
 
 
