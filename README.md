@@ -15,8 +15,7 @@ $ virtualenv -p python venv
 $ source venv/bin/activate
 
 # Install dependencies
-$ pip install Django
-$ pip install pillow
+$ pip install -r requirements.txt
 
 # Make Django db migrations 
 $ python manage.py makemigrations
