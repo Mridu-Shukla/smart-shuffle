@@ -1,6 +1,8 @@
 # Smart-Shuffle Music Portal (SS Music)
 It is a music recommendation system which uses **Collaborative Filtering Recommendation Algorithm** to help the user in creating their playlists based on their favourites.
 
+The Dataset for project has been generated using the Spotipy, a Spotify API which provides all the songs in the playlists along with the 
+audio features.
 
 ### Quick Start Guide
 ```bash
